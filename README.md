@@ -1,2 +1,2 @@
 # Ipfinder
-Busque ip de sites
+Busque o ip de sites através da Url
