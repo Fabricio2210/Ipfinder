@@ -1,0 +1,32 @@
+.borda {
+    border-style: groove;
+    border-color: antiquewhite;
+    border-width: 5px;
+}
+
+  .fundowin98Titulo{
+  background-color: #0000a5
+}
+.fundoWin98Form{
+  background-color: #c9c9c9;
+}
+.btnWindow98{
+  background-color:#c9c9c9 !important;
+  border-style: groove !important;
+  border-color: dimgray !important;
+  border-width: 2px;
+  color: black;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%
+}
+
+.btnWindow98reset{
+  background-color:#c9c9c9 !important;
+  
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.point:hover {
+  cursor:pointer;
+}
