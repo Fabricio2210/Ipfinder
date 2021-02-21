@@ -1,5 +1,11 @@
 <template>
   <div class="borda fundoWin98Form mx-1">
+     <Loading
+      :active.sync="isLoading"
+      :can-cancel="false"
+      :is-full-page="fullPage"
+    >
+    </Loading>
     <div class="d-flex">
       <p class="text-center fundowin98Titulo text-white flex-fill"><strong>Ip Finder</strong></p>
       <a class="flex-shrink-1 btnWindow98reset point "  @click="resetaFormulario" tag="button">X</a>
@@ -30,7 +36,12 @@
 </template>
 <script>
 import axios from 'axios'
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
+  components: {
+    Loading
+  },
   data(){
     return{
       endereco:{
@@ -45,14 +56,16 @@ export default {
       url: '',
       isDisable : true,
       descricao:'Insira o endereço do site',
-      isError: false
+      isError: false,
+      isLoading: false,
+      fullPage: true
     }
   },
 
   methods:{
      pegaIp(e){
        e.preventDefault();
-       
+       this.isLoading = true;
       axios.post('/iplocation',{
         url: this.url
       })
@@ -62,13 +75,15 @@ export default {
         this.endereco.estado =`Estado/Região: ${res.data.endereco.estado}`;
         this.endereco.cidade = `Cidade: ${res.data.endereco.cidade}`;
         this.isDisable = false;
+        this.isLoading = false;
       })
       .catch(erro =>{
         this.descricao = erro.response.data.msg;
         this.isError = true;
+        this.isLoading = false;
         setTimeout(()=>{
           this.descricao = 'Insira o endereço do site';
-          this.isError = false
+          this.isError = false;
         },3000)
       })
     },
